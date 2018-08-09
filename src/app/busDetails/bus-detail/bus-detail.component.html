@@ -1,0 +1,74 @@
+<!-- <div>
+  tabel here
+</div>
+
+<div *ngFor="let tabTitle of allBusData; let i = index">
+  Date: {{tabTitle.date}} Bus Org: {{tabTitle.organisation}}
+</div>
+
+<div *ngFor="let busDetails of allBusData;">
+  <div *ngFor="let busIds of busDetails.busData; let i = index">
+    Bus Id: {{busIds.busId}}
+  </div>
+  <div *ngFor="let busIds of busDetails.busData; let i = index">
+    Route Variant: {{busIds.routeVariant}}
+  </div>
+</div> -->
+
+
+<div class="bs-example ">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default marginTop2" *ngFor="let busDetails of allBusData; let i = index">
+      <div class="panel-heading tabHeading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse">
+            <label>{{busDetails.organisation}} - {{busDetails.date}}</label>
+          </a>
+        </h4>
+      </div>
+      <div class="">
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Bus ID</th>
+                <th scope="col">Route Variant</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let busDetail of busDetails.busData; let i = index">
+
+                <td>{{busDetail.busId}}</td>
+                <td>{{busDetail.routeVariant}}</td>
+                <td>
+                  <span class="early" *ngIf="busDetail.deviationFromTimetable > 0">Early</span>
+                  <span class="late" *ngIf="busDetail.deviationFromTimetable < 0">Late</span>
+                  <span class="onTime" *ngIf="busDetail.deviationFromTimetable == null">On Time</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <textarea name="notes" id="notes" class="notes" rows="2" placeholder="Enter notes here"></textarea>
+            <div class="btn btn-primary">Save Notes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. What is Bootstrap?</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+                </div>
+            </div>
+        </div> -->
